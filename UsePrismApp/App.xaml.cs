@@ -2,6 +2,7 @@
 using Prism.Ioc;
 using Prism.Modularity;
 using System.Windows;
+using UsePrismApp.ViewModels;
 
 namespace UsePrismApp
 {
@@ -17,7 +18,9 @@ namespace UsePrismApp
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterForNavigation<ViewControlFirst>();
 
+            containerRegistry.RegisterDialog<ViewControlSecond, ViewControlSecondViewModel>();
         }
     }
 }
