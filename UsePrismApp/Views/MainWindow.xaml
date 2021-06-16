@@ -13,7 +13,25 @@
                     Command="{Binding SystemDateUpdateButton}"
                     Height="30"
                     Width="110"
-                    Margin="0,0,400,0"/>
+                    Margin="4,0,394,0"/>
+            <Button Content="画面Aを呼び出す"
+                    Height="30"
+                    Width="110"
+                    Margin="128,-30,260,0"
+                    Command="{Binding ShowViewControlFirst}"
+                    />
+            <Button Content="パラメーターあり"
+                    Height="30"
+                    Width="110"
+                    Margin="128,-30,0,0"
+                    Command="{Binding ShowViewControlFirstParam}"
+                    />
+            <Button Content="ポップアップ"
+                    Height="30"
+                    Width="110"
+                    Margin="4,10,394,0"
+                    Command="{Binding ShowViewControlSecond}"
+                    />
         </StackPanel>
     </Grid>
 </Window>
