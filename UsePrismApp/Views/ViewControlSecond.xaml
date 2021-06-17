@@ -7,8 +7,9 @@
         <StackPanel>
             <Label Content="ViewControlSecond 画面"
                    FontSize="40"
-                   
                 />
+            <TextBox Text="{Binding ViewControlSecondTextBox}"/>
+            <Button Content="OK" Command="{Binding OKButton}"/>
         </StackPanel>
     </Grid>
 </UserControl>

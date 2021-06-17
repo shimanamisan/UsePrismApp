@@ -11,6 +11,8 @@
                />
             <Label Content="{Binding LabelA}"/>
             <TextBox/>
+            <Button Content="OK"
+                    Command="{Binding ViewFirstControlOKButton}"/>
         </StackPanel>
         
     </Grid>

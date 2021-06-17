@@ -87,9 +87,29 @@ namespace UsePrismApp.ViewModels
 
         private void ShowViewControlSecondExecute()
         {
-            _daialogService.ShowDialog(nameof(ViewControlSecond) ,null ,null);
+            var p = new DialogParameters();
+            p.Add(nameof(ViewControlSecondViewModel.ViewControlSecondTextBox), SystemDateLabel);
+            _daialogService.ShowDialog(nameof(ViewControlSecond) ,p ,ViewControlSecondClose);
 
             // ポップアップで表示させる処理もApp.xamlのRegisterTypesに登録する
+            // パラメーターを渡す際は、ShowDialogの第二引数に代入する
+            // 渡したパラメータは、ViewModelで追加したOnNavigatedFromメソッドにわたるようになる
+            // ShowDialogの第三引数で画面が閉じられた時のActionが通知されるので、メソッドを登録しておくと受け取れるようになる
         }
+
+        // 引数のdialogResultにViewControlSecondで設定したOKボタンの通知とパラメータがわたってくる
+        private void ViewControlSecondClose(IDialogResult dialogResult)
+        {
+            // バツボタンが押されたときは値が戻らないので、MainWindowのラベルが消えてしまう
+            // OKボタンが押された時だけパラメータにアクセスするように処理を実装する
+            if(dialogResult.Result == ButtonResult.OK)
+            {
+                SystemDateLabel = dialogResult.
+                              Parameters.
+                              GetValue<string>(
+                              nameof(ViewControlSecondViewModel.ViewControlSecondTextBox));
+            }          
+        }
+
     }
 }
