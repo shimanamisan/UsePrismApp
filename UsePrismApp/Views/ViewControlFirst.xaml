@@ -13,6 +13,8 @@
             <TextBox/>
             <Button Content="OK"
                     Command="{Binding ViewFirstControlOKButton}"/>
+            <Button Content="OK2"
+                    Command="{Binding ViewFirstControlOKButton2}"/>
         </StackPanel>
         
     </Grid>
