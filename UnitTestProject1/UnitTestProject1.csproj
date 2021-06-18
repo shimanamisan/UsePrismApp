@@ -60,9 +60,6 @@
     <Reference Include="Prism, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.8.1.97\lib\net47\Prism.dll</HintPath>
     </Reference>
-    <Reference Include="Prism.Forms, Version=8.1.97.5141, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Forms.8.1.97\lib\netstandard2.0\Prism.Forms.dll</HintPath>
-    </Reference>
     <Reference Include="Prism.Wpf, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.8.1.97\lib\net47\Prism.Wpf.dll</HintPath>
     </Reference>

@@ -110,13 +110,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Moq">
-      <Version>4.16.1</Version>
-    </PackageReference>
-    <PackageReference Include="Prism.Forms">
+    <PackageReference Include="Prism.Unity">
       <Version>8.1.97</Version>
     </PackageReference>
-    <PackageReference Include="Prism.Unity">
+    <PackageReference Include="Prism.Wpf">
       <Version>8.1.97</Version>
     </PackageReference>
   </ItemGroup>
