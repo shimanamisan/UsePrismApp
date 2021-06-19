@@ -60,11 +60,15 @@
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="ViewModels\ViewControlFirstViewModel.cs" />
     <Compile Include="ViewModels\ViewControlSecondViewModel.cs" />
+    <Compile Include="ViewModels\ViewControlThirdViewModel.cs" />
     <Compile Include="Views\ViewControlFirst.xaml.cs">
       <DependentUpon>ViewControlFirst.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewControlSecond.xaml.cs">
       <DependentUpon>ViewControlSecond.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewControlThird.xaml.cs">
+      <DependentUpon>ViewControlThird.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +88,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ViewControlSecond.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewControlThird.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

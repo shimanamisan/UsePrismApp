@@ -33,6 +33,8 @@ namespace UsePrismApp.ViewModels
 
         public DelegateCommand ShowViewControlSecond { get; }
 
+        public DelegateCommand ShowViewControlThird { get; }
+
         // 画面遷移させる処理
         private readonly IRegionManager _regionManager;
 
@@ -53,6 +55,8 @@ namespace UsePrismApp.ViewModels
             ShowViewControlFirstParam = new DelegateCommand(ShowViewControlFirstParamExecute);
 
             ShowViewControlSecond = new DelegateCommand(ShowViewControlSecondExecute);
+
+            ShowViewControlThird = new DelegateCommand(ShowViewControlThirdExecute);
 
             _daialogService = daialogService;
 
@@ -89,12 +93,17 @@ namespace UsePrismApp.ViewModels
         {
             var p = new DialogParameters();
             p.Add(nameof(ViewControlSecondViewModel.ViewControlSecondTextBox), SystemDateLabel);
-            _daialogService.ShowDialog(nameof(ViewControlSecond) ,p ,ViewControlSecondClose);
+            _daialogService.ShowDialog(nameof(ViewControlSecond), p, ViewControlSecondClose);
 
             // ポップアップで表示させる処理もApp.xamlのRegisterTypesに登録する
             // パラメーターを渡す際は、ShowDialogの第二引数に代入する
             // 渡したパラメータは、ViewModelで追加したOnNavigatedFromメソッドにわたるようになる
             // ShowDialogの第三引数で画面が閉じられた時のActionが通知されるので、メソッドを登録しておくと受け取れるようになる
+        }
+        private void ShowViewControlThirdExecute()
+        {
+
+            _regionManager.RequestNavigate("ContentRegion", nameof(ViewControlThird));
         }
 
         // 引数のdialogResultにViewControlSecondで設定したOKボタンの通知とパラメータがわたってくる

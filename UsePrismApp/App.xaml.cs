@@ -20,6 +20,8 @@ namespace UsePrismApp
         {
             containerRegistry.RegisterForNavigation<ViewControlFirst>();
 
+            containerRegistry.RegisterForNavigation<ViewControlThird>();
+
             containerRegistry.RegisterDialog<ViewControlSecond, ViewControlSecondViewModel>();
         }
     }
