@@ -3,6 +3,7 @@ using Prism.Mvvm;
 using Prism.Regions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using UsePrismApp.Services;
 
@@ -12,14 +13,58 @@ namespace UsePrismApp.ViewModels
     {
         private IMessageService _messageService;
 
+        // ListBox
+        private ObservableCollection<string> _viewThirdListBox = new ObservableCollection<string>();
+
+        // リストボックスにバインディングさせるものは ObservableCollection を使用する
+        // System.Collections.ObjectModel をusingしておく
+        public ObservableCollection<string> ViewThirdListBox
+        {
+            get { return _viewThirdListBox; }
+            set { SetProperty(ref _viewThirdListBox, value); }
+        }
+
+        // ComboBox
+        private ObservableCollection<ComboBoxViewModel> _viewThirdComboBox = new ObservableCollection<ComboBoxViewModel>();
+
+        // ComboBox
+        public ObservableCollection<ComboBoxViewModel> ViewThirdComboBox
+        {
+            get { return _viewThirdComboBox; }
+            set { SetProperty(ref _viewThirdComboBox, value); }
+        }
+
+        // SelectedItem Binding コンボボックスの中のデータ1つを選択していることを受ける
+        private ComboBoxViewModel _selectedAreas;
+
+        // Selected
+        public ComboBoxViewModel SelectedAreas
+        {
+            get { return _selectedAreas; }
+            set { SetProperty(ref _selectedAreas, value); }
+        }
+
         public ViewControlThirdViewModel() : this(new MessageService())
         {
 
         }
 
+        // コンストラクターが2つあるがこちらにロジックを集中させる
+        // 引数なしから呼ばれてもかならずこっちも呼ばれるので
         public ViewControlThirdViewModel(IMessageService messageService)
         {
             _messageService = messageService;
+
+            ViewThirdListBox.Add("Sample");
+            ViewThirdListBox.Add("TeatData");
+            ViewThirdListBox.Add("Hello! World");
+
+            ViewThirdComboBox.Add(new ComboBoxViewModel(1, "大阪"));
+            ViewThirdComboBox.Add(new ComboBoxViewModel(1, "東京"));
+            ViewThirdComboBox.Add(new ComboBoxViewModel(1, "名古屋"));
+
+            // ComboBoxのデフォルト値も指定できる
+            SelectedAreas = ViewThirdComboBox[1];
         }
 
         // 画面が閉じる直前に通知されるメソッド

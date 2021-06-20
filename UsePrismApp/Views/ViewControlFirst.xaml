@@ -11,11 +11,27 @@
                Foreground="Brown"
                />
             <Label Content="{Binding LabelA}"/>
-            <TextBox/>
-            <Button Content="OK"
-                    Command="{Binding ViewFirstControlOKButton}"/>
-            <Button Content="OK2"
-                    Command="{Binding ViewFirstControlOKButton2}"/>
+            <TextBox
+                    Height="30"
+                    Width="200" HorizontalAlignment="Center"/>
+            <StackPanel HorizontalAlignment="Center" Margin="0,18,0,0">
+
+                <Button Content="OK"
+                    Height="30"
+                    Width="110"
+                    Command="{Binding ViewFirstControlOKButton}" Margin="0" HorizontalAlignment="Left"/>
+                <Button Content="OK2"
+                    Height="30"
+                    Width="110"
+                    Command="{Binding ViewFirstControlOKButton2}" HorizontalAlignment="Left" Margin="125,-30,0,0"/>
+
+                <Button Content="閉じる"
+                    Height="30"
+                    Width="110"
+                    Command="{Binding ViewFirstControlCloseButton}" HorizontalAlignment="Left" Margin="250,-30,0,0"/>
+
+            </StackPanel>
+             
         </StackPanel>
         
     </Grid>

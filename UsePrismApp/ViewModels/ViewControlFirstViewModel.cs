@@ -20,6 +20,9 @@ namespace UsePrismApp.ViewModels
         private IMessageService _messageService;
 
         private string _labelA = string.Empty;
+
+        public event Action<IDialogResult> RequestClose;
+
         public string LabelA
         {
             get { return _labelA; }
@@ -28,7 +31,8 @@ namespace UsePrismApp.ViewModels
 
         // dialogService だけ受けて、thisで2つ目のコンストラクタの ViewControlFirstViewModel に dialogService と
         // インスタンス化した MessageService を渡している
-        public ViewControlFirstViewModel(IDialogService dialogService) : this(dialogService, new MessageService())
+        public ViewControlFirstViewModel(IDialogService dialogService) : 
+            this(dialogService, new MessageService())
         {
             // thisを指定することで複数のコンストラクタを呼び出すことができる
         }
@@ -41,7 +45,10 @@ namespace UsePrismApp.ViewModels
             IMessageService messageService)
         {
             ViewFirstControlOKButton = new DelegateCommand(ViewFirstControlOKButtonExecute);
+
             ViewFirstControlOKButton2 = new DelegateCommand(ViewFirstControlOKButtonExecute2);
+
+            ViewFirstControlCloseButton = new DelegateCommand(ViewFirstControlCloseButtonExecute);
 
             _dialogService = dialogService;
 
@@ -49,7 +56,10 @@ namespace UsePrismApp.ViewModels
         }
 
         public DelegateCommand ViewFirstControlOKButton { get; }
+
         public DelegateCommand ViewFirstControlOKButton2 { get; }
+
+        public DelegateCommand ViewFirstControlCloseButton { get; }
 
         // 画面遷移で通過するときの処理
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -92,5 +102,19 @@ namespace UsePrismApp.ViewModels
                 _messageService.ShowDialog("Saveしました");
             }
         }
+
+        // 遷移先から画面を戻す処理を実装
+        private void ViewFirstControlCloseButtonExecute()
+        {
+            
+        }
+
+        public bool CanCloseDialog()
+        {
+            // 右上×ボタンで閉じれないようにする
+            return false;
+        }
+
+      
     }
 }
