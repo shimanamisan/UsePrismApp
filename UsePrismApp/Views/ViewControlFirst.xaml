@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True"
              Height="350" Width="525">
+    
     <Grid>
         <StackPanel>
             <Label Content="画面A"
@@ -29,7 +30,7 @@
                     Height="30"
                     Width="110"
                     Command="{Binding ViewFirstControlCloseButton}" HorizontalAlignment="Left" Margin="250,-30,0,0"/>
-
+                
             </StackPanel>
              
         </StackPanel>

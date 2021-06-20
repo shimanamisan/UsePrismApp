@@ -13,6 +13,9 @@ namespace UsePrismApp.ViewModels
     {
         private IMessageService _messageService;
 
+        // サブ画面からメイン画面にアクセスする方法
+        private MainWindowViewModel _mainWindowViewModel;
+
         // ListBox
         private ObservableCollection<string> _viewThirdListBox = new ObservableCollection<string>();
 
@@ -54,18 +57,23 @@ namespace UsePrismApp.ViewModels
         }
 
         // AreaSelectedChanged
-        public DelegateCommand AreaSelectedChanged { get; }
+        // オブジェクトの配列をイベントから取得するために型指定を追加 → <object[]>
+        public DelegateCommand<object[]> AreaSelectedChanged { get; }
 
-        public ViewControlThirdViewModel() : this(new MessageService())
+        public ViewControlThirdViewModel(MainWindowViewModel mainWindowViewModel) 
+            : this(new MessageService(), mainWindowViewModel)
         {
 
         }
 
         // コンストラクターが2つあるがこちらにロジックを集中させる
         // 引数なしから呼ばれてもかならずこっちも呼ばれるので
-        public ViewControlThirdViewModel(IMessageService messageService)
+        public ViewControlThirdViewModel(IMessageService messageService, MainWindowViewModel mainWindowViewModel)
         {
+            // サブ画面からメイン画面にアクセスする方法
             _messageService = messageService;
+
+            _mainWindowViewModel = mainWindowViewModel;
 
             ViewThirdListBox.Add("Sample");
             ViewThirdListBox.Add("TeatData");
@@ -79,7 +87,8 @@ namespace UsePrismApp.ViewModels
             SelectedAreas = ViewThirdComboBox[1];
 
             // AreaSelectedChanged
-            AreaSelectedChanged = new DelegateCommand(AreaSelectedChangedExecute);
+            // オブジェクトの配列をイベントから取得するために型指定を追加 → <object[]>
+            AreaSelectedChanged = new DelegateCommand<object[]>(AreaSelectedChangedExecute);
 
         }
 
@@ -109,9 +118,14 @@ namespace UsePrismApp.ViewModels
         }
 
         // SlectionChangeが発生したときに通知を受け取る
-        public void AreaSelectedChangedExecute()
+        public void AreaSelectedChangedExecute(object[] items)
         {
+            Console.WriteLine(items);
+
             SelectedAreaLabel = SelectedAreas.Value + "： " + SelectedAreas.DisplayValue;
+
+            // サブ画面からメイン画面のタイトルを変更する
+            _mainWindowViewModel.Title = SelectedAreaLabel;
         }
     }
 }

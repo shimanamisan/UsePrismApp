@@ -25,7 +25,12 @@
                       >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
-                        <prism:InvokeCommandAction Command="{Binding AreaSelectedChanged}"/>
+                        <!--TriggerParameterPathはイベントからデータを取得したい場合に指定する-->
+                        <!--イベントの内容がどのようなものか、コードビハインド側で一度確認してみる-->
+                        <!--AddedItemsなど取得できていることがわかる-->
+                        <prism:InvokeCommandAction Command="{Binding AreaSelectedChanged}"
+                                                   TriggerParameterPath="AddedItems"
+                                                   />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ComboBox>

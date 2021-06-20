@@ -5,6 +5,12 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="350" Width="525"
         WindowStartupLocation="CenterScreen">
+
+    <!--非表示の処理はよく利用されるのでコンバーターというものが用意されている-->
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </Window.Resources>
+    
     <Grid>
         <StackPanel>
             <Label Content="{Binding SystemDateLabel}"/>
@@ -39,6 +45,12 @@
                     Margin="128,-30,260,0"
                     Command="{Binding ShowViewControlThird}"
                     />
+
+            <Button Content="非表示"
+                    Height="30"
+                    Width="110"
+                    Visibility="{Binding ButtonEnabled,Converter={StaticResource BoolVisibilityConverter}}"
+                    Margin="128,-30,0,0"/>
 
         </StackPanel>
     </Grid>

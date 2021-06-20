@@ -23,6 +23,15 @@ namespace UsePrismApp.ViewModels
             set { SetProperty(ref _systemDateLabel, value);  }
         }
 
+        // ボタンが押せる、押せないをバインディングする
+        // Xaml側にisEnableプロパティがあるので、それをデータバインディングするやり方でもよい
+        private bool _buttonEnabled = false;
+        public bool ButtonEnabled
+        {
+            get { return _buttonEnabled; }
+            set { SetProperty(ref _buttonEnabled, value); }
+        }
+
         // このDelegateCommandがXaml側のボタンとデータバインドされる
         public DelegateCommand SystemDateUpdateButton { get; }
 
@@ -50,7 +59,8 @@ namespace UsePrismApp.ViewModels
 
             _regionManager = regionManager;
 
-            ShowViewControlFirst = new DelegateCommand(ShowViewControlFirstExecute);
+            // ObservesCanExecute( () => ButtonEnabled)とすることで、ステータスの状態によってボタンを制御
+            ShowViewControlFirst = new DelegateCommand(ShowViewControlFirstExecute).ObservesCanExecute( () => ButtonEnabled);
 
             ShowViewControlFirstParam = new DelegateCommand(ShowViewControlFirstParamExecute);
 
@@ -65,6 +75,9 @@ namespace UsePrismApp.ViewModels
         // ボタンがクリックされたときの処理を実装する
         private void SystemDateUpdateButtonExecute()
         {
+            // ボタンが押せるようにステータスを更新
+            ButtonEnabled = true;
+
             // データバインドされているLabelの値（プロパティ）を変更する
             SystemDateLabel = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         }

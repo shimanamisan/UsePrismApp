@@ -23,6 +23,9 @@ namespace UsePrismApp
             containerRegistry.RegisterForNavigation<ViewControlThird>();
 
             containerRegistry.RegisterDialog<ViewControlSecond, ViewControlSecondViewModel>();
+
+            // メイン画面を操作するためにシングルトン（アプリケーションでただ一つのインスタンス）を登録する
+            containerRegistry.RegisterSingleton<MainWindowViewModel>();
         }
     }
 }
