@@ -44,6 +44,18 @@ namespace UsePrismApp.ViewModels
             set { SetProperty(ref _selectedAreas, value); }
         }
 
+        // SelectedAreaLabelの文字列をバインディングさせる
+        private string _selectedAreaLabel = "デフォルトラベル： イベントを検知したら値が変わります";
+
+        public string SelectedAreaLabel
+        {
+            get { return _selectedAreaLabel; }
+            set { SetProperty(ref _selectedAreaLabel, value); }
+        }
+
+        // AreaSelectedChanged
+        public DelegateCommand AreaSelectedChanged { get; }
+
         public ViewControlThirdViewModel() : this(new MessageService())
         {
 
@@ -60,11 +72,15 @@ namespace UsePrismApp.ViewModels
             ViewThirdListBox.Add("Hello! World");
 
             ViewThirdComboBox.Add(new ComboBoxViewModel(1, "大阪"));
-            ViewThirdComboBox.Add(new ComboBoxViewModel(1, "東京"));
-            ViewThirdComboBox.Add(new ComboBoxViewModel(1, "名古屋"));
+            ViewThirdComboBox.Add(new ComboBoxViewModel(2, "東京"));
+            ViewThirdComboBox.Add(new ComboBoxViewModel(3, "名古屋"));
 
             // ComboBoxのデフォルト値も指定できる
             SelectedAreas = ViewThirdComboBox[1];
+
+            // AreaSelectedChanged
+            AreaSelectedChanged = new DelegateCommand(AreaSelectedChangedExecute);
+
         }
 
         // 画面が閉じる直前に通知されるメソッド
@@ -90,6 +106,12 @@ namespace UsePrismApp.ViewModels
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             
+        }
+
+        // SlectionChangeが発生したときに通知を受け取る
+        public void AreaSelectedChangedExecute()
+        {
+            SelectedAreaLabel = SelectedAreas.Value + "： " + SelectedAreas.DisplayValue;
         }
     }
 }
