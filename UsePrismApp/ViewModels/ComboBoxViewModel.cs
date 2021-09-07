@@ -15,6 +15,7 @@ namespace UsePrismApp.ViewModels
             DisplayValue = displayValue;
         }
 
+        // 読み取り専用プロパティ
         public int Value { get; }
 
         public string DisplayValue { get; }
